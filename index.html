@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="30">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/x-icon" href="logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <script src="script.js"></script>
+    <title>NIST CCC | Leaderboard</title>
+</head>
+<body><h1><span class="blue">&lt;</span>Game<span class="blue">&gt;</span> <span class="yellow">Leaderboard</pan></h1>
+    <h2>Created with love by <a href="https://sambitsargam.in" target="_blank">Cloud Computing Club</a></h2>
+    <h3>Click Once on the "Time" header to check ranking</h3>
+    <table class="sortable" id="ex-table">
+      <tr id="tr">
+        <th>NAME</th>
+        <th class="sorttable_numeric">ROLL NUMBER</th>
+        <th class="sorttable_numeric">MOVE</th>
+        <th class="sorttable_numeric">TIME</th>
+        </tr>
+    </table>
+    <center>
+    <footer><a href="https://portfolio.sambitsargam.in" target="_blank">Report me Bug</a></footer>
+  </center>
+<!--Firebase Libraries-->
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script> 
+  <script>
+    var config = {
+   apiKey: "AIzaSyBz0sM7RJqPFcMTbNyBn8N7kVp3jpxGzfY",
+    authDomain: "final-event-908a4.firebaseapp.com",
+    projectId: "final-event-908a4",
+    databaseURL: "https://final-event-908a4-default-rtdb.firebaseio.com/",
+    storageBucket: "final-event-908a4.appspot.com",
+    messagingSenderId: "892922210624",
+    appId: "1:892922210624:web:4fc2546a0d846d3172f2a5"
+  };
+  firebase.initializeApp(config);
+
+var database = firebase.database();
+
+database.ref('users').once('value', function(snapshot) {
+  if (snapshot.exists()) {
+    var content = '';
+    snapshot.forEach(function(data) {
+      var val = data.val();
+      content += '<tr>';
+      content += '<td>' + val.name + '</td>';
+      content += '<td>' + val.roll + '</td>';
+      content += '<td>' + val.move + '</td>';
+      content += '<td>' + val.time + '</td>';
+      content += '</tr>';
+    });
+    $('#ex-table').append(content);
+  }
+});
+  </script>
+</body>
+</html>
