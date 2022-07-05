@@ -21,7 +21,6 @@
         <th class="sorttable_numeric">ROLL NUMBER</th>
         <th class="sorttable_numeric">MOVE</th>
         <th class="sorttable_numeric">TIME</th>
-           <th class="sorttable_numeric">SUBMISSION TIME</th>
         </tr>
     </table>
     <center>
@@ -55,7 +54,6 @@ database.ref('users').once('value', function(snapshot) {
       content += '<td>' + val.roll + '</td>';
       content += '<td>' + val.move + '</td>';
       content += '<td>' + val.time + '</td>';
-     content += '<td>' + val.submission + '</td>';
       content += '</tr>';
     });
     $('#ex-table').append(content);
